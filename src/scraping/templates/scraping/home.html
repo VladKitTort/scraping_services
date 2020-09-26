@@ -2,6 +2,19 @@
 
 {% block title %} Home {% endblock %}
 
+{% block search %}
+<div class="row">
+    <div class="col-md-3">
+        <form class="form-inline" method="get" action="">
+            <div class="form-group mb-2 pl-2">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2">Confirm identity</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 
 {% for obj in object_list %}
@@ -10,17 +23,11 @@
     <div class="card-body">
         <h6>Город: {{ obj.city.name }}</h6>
         <h6>Язык програмирования: {{ obj.computer_language.name}}</h6>
+        <h4>Компания: {{ obj.company }}</h4>
         <p class="card-text">{{ obj.description }}</p>
         <p class="text-right">Дата добавления объявления: {{ obj.timestamp|date:"d.m.Y" }}</p>
         <a href="{{ obj.url }}" class="btn btn-primary">Подробнее</a>
     </div>
 </div>
 {% endfor %}
-<form method="get" action="">
-  <label>Город:</label><br>
-  <input type="text" name="city"><br>
-  <label>Язык програмирования:</label><br>
-  <input type="text" name="computer_language"><br>
-  <input type="submit" value="Submit">
-</form>
 {% endblock %}
